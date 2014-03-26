@@ -1,0 +1,8 @@
+*.pyc
+*.cache
+*.sublime-project
+*.sublime-workspace
+*.DS_Stors
+.rope*
+.ropeproject/*
+tests/*

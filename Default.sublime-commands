@@ -1,0 +1,78 @@
+[
+    {
+        "caption": "Refactor: Create Rope Project",
+        "command": "refactor_create_project"
+    },
+    {
+        "caption": "Refactor: Undo",
+        "command": "refactor_undo"
+    },
+    {
+        "caption": "Refactor: Redo",
+        "command": "refactor_redo"
+    },
+    {
+        "caption": "Refactor: Rename a field",
+        "command": "refactor_rename_attribute"
+    },
+    {
+        "caption": "Refactor: Rename a module",
+        "command": "refactor_rename_module"
+    },
+    {
+        "caption": "Refactor: Module to Package",
+        "command": "refactor_module_to_package"
+    },
+    {
+        "caption": "Refactor: Change Signature",
+        "command": "refactor_change_signature"
+    },
+    {
+        "caption": "Refactor: Extract Method",
+        "command": "refactor_extract_method"
+    },
+    {
+        "caption": "Refactor: Extract Variable",
+        "command": "refactor_extract_variable"
+    },
+    {
+        "caption": "Refactor: Inline",
+        "command": "refactor_inline"
+    },
+    {
+        "caption": "Refactor: Local to Field",
+        "command": "refactor_local_to_field"
+    },
+    {
+        "caption": "Refactor: Introduce Parameter",
+        "command": "refactor_introduce_parameter"
+    },
+    {
+        "caption": "Refactor: Introduce Constructor Factory",
+        "command": "refactor_introduce_factory"
+    },
+    {
+        "caption": "Refactor: Encapsulate Field",
+        "command": "refactor_encapsulate_field"
+    },
+    {
+        "caption": "Refactor: Use Function whenever",
+        "command": "refactor_use_function"
+    },
+    {
+        "caption": "Refactor: Move across module",
+        "command": "refactor_move_global"
+    },
+    {
+        "caption": "Refactor: Move attribute",
+        "command": "refactor_move_attribute"
+    },
+    {
+        "caption": "Refactor: Transform Function to Method",
+        "command": "refactor_method_object"
+    },
+    {
+        "caption": "Refactor: Restructure",
+        "command": "refactor_restructure"
+    }
+]

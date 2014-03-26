@@ -1,0 +1,15 @@
+[
+    // sublime refactor
+    { 
+        "keys": ["ctrl+shift+z"], 
+        "command": "refactor_undo" 
+    },
+    { 
+        "keys": ["ctrl+shift+y"], 
+        "command": "refactor_redo" 
+    },
+    {
+        "keys": ["ctrl+shift+n"], 
+        "command": "refactor_create_project" 
+    }
+]

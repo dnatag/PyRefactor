@@ -1,0 +1,24 @@
+Initial Public Release of Sublime PyRefactor
+========================================
+
+Features of Refactoring
+-----------------------
+0. Create a rope project (Ctrl+Shift+N)
+1. Undo last refactoring action (Ctrl+Shift+Z)
+2. Redo last refactoring action (Ctrl+Shift+Y)
+3. Rename a field
+4. Rename a module
+5. Transform a module to package
+6. Change method signiture
+7. Extract method
+8. Extract variable
+9. Inline a method
+10. Local to field
+11. Introduce parameter to a method/function
+12. Introduce constructor factory
+13. Encapsulate field
+14. Use function whenever
+15. Move across module
+16. Move attribute
+17. Transform function to method object
+18. Restructure
