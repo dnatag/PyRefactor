@@ -1,9 +1,9 @@
 # Python refactoring made easy in Sublime Text 3#
 ## Introduction ##
-This plugin is designed to help [rope](https://github.com/python-rope/rope.git) users to refactor python codes. Rather than relying on complex client-server architecture, this plugin generate a temporary rope script, refactor your codes, and reload the refactored code once refactoring is completed. 
+This plugin is designed to help [rope](https://github.com/python-rope/rope.git) users to refactor python codes. It generates a temporary rope script, which refactors your codes, and then it reloads the refactored codes in Sublime Text. This is a quick and dirty hack and may not work well for very complex codes.
 
 ## Refactor Methods Implemented ##
-0. Create a rope project (Ctrl+Shift+N)
+0. Create a rope project (Ctrl+Shift+N): You must create the rope project first before performing any following refactoring actions. 
 1. Undo last refactoring action (Ctrl+Shift+Z)
 2. Redo last refactoring action (Ctrl+Shift+Y)
 3. Rename a field
