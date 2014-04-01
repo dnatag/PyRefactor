@@ -13,6 +13,7 @@ import tempfile
 import re
 import time
 from string import Template
+from threading import Thread
 
 import sublime
 import sublime_plugin
@@ -134,19 +135,31 @@ class PerformRefactorCommand(ExecCommand):
 
     """ Required to cleanup the temp script """
 
+    def run(self, *args, **kwargs):
+        super().run(*args, **kwargs)
+        self.progress_reporter = Thread(target=self.progress).start()
+
+    def progress(self):
+        while self.proc.poll():
+            time.sleep(1)
+            self.append_string(self.proc, ".")
+
     def finish(self, proc):
         if not self.quiet:
             elapsed = time.time() - proc.start_time
             exit_code = proc.exit_code()
             if exit_code == 0 or exit_code is None:
                 self.append_string(proc,
-                                  ("[Refactoring was successfully finished in %.1fs]"
+                                  ("\n[Refactoring was successfully finished in %.1fs]"
                                    % (elapsed)))
             else:
                 self.append_string(proc,
-                                  ("[Refactoring was finished in %.1fs with exit code %d]\n"
+                                  ("\n[Refactoring was finished in %.1fs with exit code %d]\n"
                                    % (elapsed, exit_code)))
                 self.append_string(proc, self.debug_text)
+
+        # Terminate the reporter thread
+        self.progress_reporter.join()
 
         if proc != self.proc:
             return
