@@ -59,8 +59,8 @@ def refactor_static(func):
         proj = _proj_finder(curr_view)
         if proj is None:
             return
-        return rope_script.substitute(proj_path=proj,
-                                      fname=curr_view.file_name(),
+        return rope_script.substitute(proj_path=proj.replace('\\', '/'),
+                                      fname=curr_view.file_name().replace('\\', '/'),
                                       response_action=func(*args, **kwargs))
     return _decorator
 
@@ -106,8 +106,11 @@ class RefactorBaseCommand(sublime_plugin.TextCommand):
                 delete=False) as temp:
             temp.write(output)
             temp.flush()
+            name = self._quote(temp.name)
+            if os.name == 'nt':
+                name = self._double_quote(temp.name)
             sublime.active_window().run_command('perform_refactor', {
-                'shell_cmd': ' '.join(['python -u', self._quote(temp.name)])
+                'shell_cmd': ' '.join(['python -u', name])
             })
 
     def _save_views(self):
@@ -129,6 +132,9 @@ class RefactorBaseCommand(sublime_plugin.TextCommand):
 
     def _quote(self, content):
         return '\'' + content + '\''
+
+    def _double_quote(self, content):
+        return '\"' + content + '\"'
 
 
 class PerformRefactorCommand(ExecCommand):
@@ -204,7 +210,7 @@ import rope.base.project
 myproject = rope.base.project.Project('$path')
 myproject.close()
 """)
-        return s.substitute(path=args[0])
+        return s.substitute(path=args[0].replace("\\", "/"))
 
 
 class RefactorUndoCommand(RefactorBaseCommand):
