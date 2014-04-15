@@ -38,6 +38,9 @@ myproject.close()
 
 # TODO: check the presence of rope and python version
 
+def convert_path(path):
+    return path.replace('\\', '/')
+
 
 def refactor_static(func):
     def _proj_finder(curr_view):
@@ -59,8 +62,8 @@ def refactor_static(func):
         proj = _proj_finder(curr_view)
         if proj is None:
             return
-        return rope_script.substitute(proj_path=proj.replace('\\', '/'),
-                                      fname=curr_view.file_name().replace('\\', '/'),
+        return rope_script.substitute(proj_path=convert_path(proj),
+                                      fname=convert_path(curr_view.file_name()),
                                       response_action=func(*args, **kwargs))
     return _decorator
 
@@ -210,7 +213,7 @@ import rope.base.project
 myproject = rope.base.project.Project('$path')
 myproject.close()
 """)
-        return s.substitute(path=args[0].replace("\\", "/"))
+        return s.substitute(path=convert_path(args[0]))
 
 
 class RefactorUndoCommand(RefactorBaseCommand):
