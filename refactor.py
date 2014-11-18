@@ -20,7 +20,7 @@ import sublime_plugin
 _execcmd = __import__("Default.exec", globals(), locals(), ['ExecCommand'])
 ExecCommand = _execcmd.ExecCommand
 
-
+settings_file = "PyRefactor.sublime-settings"
 debug = False
 
 rope_script = Template("""
@@ -37,6 +37,7 @@ myproject.close()
 """)
 
 # TODO: check the presence of rope and python version
+
 
 def convert_path(path):
     return path.replace('\\', '/')
@@ -66,6 +67,13 @@ def refactor_static(func):
                                       fname=convert_path(curr_view.file_name()),
                                       response_action=func(*args, **kwargs))
     return _decorator
+
+
+def get_python_intepreter():
+    settings = sublime.load_settings(settings_file)
+    if settings.has("python_intepreter"):
+        return settings.get("python_intepreter")
+    return "python"
 
 
 class RefactorBaseCommand(sublime_plugin.TextCommand):
@@ -113,7 +121,7 @@ class RefactorBaseCommand(sublime_plugin.TextCommand):
             if os.name == 'nt':
                 name = self._double_quote(temp.name)
             sublime.active_window().run_command('perform_refactor', {
-                'shell_cmd': ' '.join(['python -u', name])
+                'shell_cmd': ' '.join([get_python_intepreter(), '-u', name])
             })
 
     def _save_views(self):
@@ -181,7 +189,8 @@ class PerformRefactorCommand(ExecCommand):
                 ("Refactoring finished with %d errors") % len(errs))
 
         # cleanup the temp script file
-        m = re.match(r"\[shell_cmd: python -u \'(.+)\'\]", self.debug_text)
+        regexp = r"\[shell_cmd: %s -u \'(.+)\'\]" % get_python_intepreter()
+        m = re.match(regexp, self.debug_text)
         if m is not None:
             os.unlink(m.group(1))
 

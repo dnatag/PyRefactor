@@ -153,6 +153,17 @@
                                 },
                                 "caption": "Key Bindings – User"
                             },
+                            { "caption": "-" },
+                            {
+                                "caption": "Settings - Default",
+                                "command": "open_file",
+                                "args": {"file": "${packages}/PyRefactor/PyRefactor.sublime-settings"}
+                            },
+                            {
+                                "caption": "Settings - User",
+                                "command": "open_file",
+                                "args": {"file": "${packages}/User/PyRefactor.sublime-settings"}
+                            },
                             { "caption": "-" }
                         ]
                     }
