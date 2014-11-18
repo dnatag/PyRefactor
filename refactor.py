@@ -168,7 +168,8 @@ class PerformRefactorCommand(ExecCommand):
                 self.append_string(proc, self.debug_text)
 
         # Terminate the reporter thread
-        self.progress_reporter.join()
+        if self.progress_reporter:
+            self.progress_reporter.join()
 
         if proc != self.proc:
             return
