@@ -1,0 +1,6 @@
+Version 0.1.2
+==============
+Release Date: 08-18-2014 (Thanks to @pchomik)
+1. Add Settings to Main Menu
+2. Add python_intepreter option to the Settings
+3. Bugfix for null progress_reporter

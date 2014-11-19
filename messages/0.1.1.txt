@@ -1,0 +1,5 @@
+Version 0.1.1
+==============
+Release Date: 04-19-2014
+1. Add a progress indicator for long refactoring action
+2. Windows compatibility (Thanks to @lmno)
