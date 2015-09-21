@@ -282,6 +282,9 @@ myproject.do(changes)
         curr_sel_region = self.view.sel()[0]
         return self.view.word(curr_sel_region)
 
+    def get_selected_word(self):
+        return self.view.substr(self._sel_word())
+
 
 class RefactorInlineCommand(RefactorSimpleCommand):
 
@@ -368,7 +371,7 @@ class RefactorRenameAttributeCommand(RefactorSimpleCommand):
     def run(self, edit):
         active_window = sublime.active_window()
         active_window.show_input_panel(
-            'New name:', '', self.on_done, None, None)
+            'New name:', self.get_selected_word(), self.on_done, None, None)
 
     @refactor_static
     def refactor(self, *args, **kwargs):
